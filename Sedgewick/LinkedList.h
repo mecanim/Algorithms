@@ -12,6 +12,7 @@ public:
 
 public:
 	void MoveMaxToTail();
+	void MoveMinToHead();
 	void DisplayList();
 	void AddNode(int Data);
 private:

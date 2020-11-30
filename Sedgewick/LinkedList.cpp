@@ -88,7 +88,7 @@ void LinkedList::MoveMaxToTail()
 	Node* previousBeforeMax = max->prev;
 
 	nextAfterMax->prev = previousBeforeMax;
-	if (previousBeforeMax)
+	if (previousBeforeMax != nullptr)
 	{
 		previousBeforeMax->next = nextAfterMax;
 	}
@@ -98,6 +98,47 @@ void LinkedList::MoveMaxToTail()
 	max->next = nullptr;
 
 	_tail = max;
+}
+
+void LinkedList::MoveMinToHead()
+{
+	if (!(_head && _tail))
+	{
+		printf("List head or tail are not valid");
+		return;
+	}
+	Node* min = _head;
+
+	Node* current = _head->next;
+	while (current != nullptr)
+	{
+		if (current->data < min->data)
+		{
+			min = current;
+		}
+		current = current->next;
+	}
+
+	if (min == _head)
+	{
+		return;
+	}
+
+	Node* nextAfterMin = min->next;
+	Node* previousBeforeMin = min->prev;
+
+	if (nextAfterMin != nullptr)
+	{
+		nextAfterMin->prev = previousBeforeMin;
+	}
+	previousBeforeMin->next = nextAfterMin;
+
+
+	_head->prev = min;
+	min->prev = nullptr;
+	min->next = _head;
+
+	_head = min;
 }
 
 void LinkedList::DisplayList()

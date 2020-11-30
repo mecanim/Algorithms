@@ -10,19 +10,24 @@ public:
 	LinkedList(int Length);
 	~LinkedList();
 
+public:
+	void MoveMaxToTail();
+	void DisplayList();
+	void AddNode(int Data);
 private:
 	struct Node
 	{
 		ListItem data;
 		Node* next;
+		Node* prev;
 
-		Node(int X, Node* Next)
+		Node(int X, Node* Prev, Node* Next)
 		{
 			data = X;
+			prev = Prev;
 			next = Next;
 		}
 	};
-
 
 	const int MIN_COUNT_NODES = 2;
 
